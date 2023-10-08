@@ -20,7 +20,7 @@ function SmallFilmCard({ src: imageSrc, alt: filmName }: SmallFilmCardProps): JS
         </a>
       </h3>
     </article>
-  )
+  );
 }
 
 export default SmallFilmCard;

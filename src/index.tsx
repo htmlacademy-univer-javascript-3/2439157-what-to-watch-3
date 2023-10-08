@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/App';
 
+// eslint-disable-next-line react-refresh/only-export-components
 const Setting = {
   PromoFilmName: 'The Grand Budapest Hotel',
   PromoFilmGenre: 'Drama',
@@ -17,6 +18,7 @@ root.render(
     <App
       promoFilmName={Setting.PromoFilmName}
       promoFilmGenre={Setting.PromoFilmGenre}
-      promoFilmYear={Setting.PromoFilmYear} />
+      promoFilmYear={Setting.PromoFilmYear}
+    />
   </React.StrictMode>
 );

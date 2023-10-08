@@ -1,4 +1,4 @@
-import SmallFilmCard from "../../components/small-film-card/SmallFilmCard";
+import SmallFilmCard from '../../components/small-film-card/SmallFilmCard';
 
 type MainPageProps = {
   promoFilmName: string;
@@ -173,7 +173,7 @@ function MainPage({ promoFilmName, promoFilmGenre, promoFilmYear }: MainPageProp
         </footer>
       </div>
     </>
-  )
+  );
 }
 
 export default MainPage;

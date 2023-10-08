@@ -1,6 +1,4 @@
-type MyListPageProps = {}
-
-function MyListPage({ }: MyListPageProps): JSX.Element {
+function MyListPage(): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -163,7 +161,7 @@ function MyListPage({ }: MyListPageProps): JSX.Element {
         </div>
       </footer>
     </div>
-  )
+  );
 }
 
 export default MyListPage;

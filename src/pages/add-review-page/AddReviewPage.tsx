@@ -1,6 +1,4 @@
-type AddReviewPageProps = {}
-
-function AddReviewPage({ }: AddReviewPageProps): JSX.Element {
+function AddReviewPage(): JSX.Element {
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
@@ -169,7 +167,7 @@ function AddReviewPage({ }: AddReviewPageProps): JSX.Element {
               name="review-text"
               id="review-text"
               placeholder="Review text"
-              defaultValue={""}
+              defaultValue={''}
             />
             <div className="add-review__submit">
               <button className="add-review__btn" type="submit">
@@ -180,7 +178,7 @@ function AddReviewPage({ }: AddReviewPageProps): JSX.Element {
         </form>
       </div>
     </section>
-  )
+  );
 }
 
 export default AddReviewPage;
