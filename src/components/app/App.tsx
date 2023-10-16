@@ -1,4 +1,4 @@
-import MainPage from '../../pages/main-page/MainPage';
+import MainPage from '../../pages/main-page/main-page';
 
 type AppProps = {
   promoFilmName: string;
@@ -6,9 +6,9 @@ type AppProps = {
   promoFilmYear: number;
 }
 
-function App({ promoFilmName, promoFilmGenre, promoFilmYear }: AppProps): JSX.Element {
+function App(props: AppProps): JSX.Element {
   return (
-    <MainPage promoFilmName={promoFilmName} promoFilmGenre={promoFilmGenre} promoFilmYear={promoFilmYear} />
+    <MainPage {...props} />
   );
 }
 

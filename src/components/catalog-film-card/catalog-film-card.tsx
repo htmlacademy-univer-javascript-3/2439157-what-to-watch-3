@@ -1,9 +1,9 @@
-type SmallFilmCardProps = {
+type CatalogFilmCardProps = {
   src: string;
   alt: string;
 }
 
-function SmallFilmCard({ src: imageSrc, alt: filmName }: SmallFilmCardProps): JSX.Element {
+function CatalogFilmCard({ src: imageSrc, alt: filmName }: CatalogFilmCardProps): JSX.Element {
   return (
     <article className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
@@ -23,4 +23,4 @@ function SmallFilmCard({ src: imageSrc, alt: filmName }: SmallFilmCardProps): JS
   );
 }
 
-export default SmallFilmCard;
+export default CatalogFilmCard;

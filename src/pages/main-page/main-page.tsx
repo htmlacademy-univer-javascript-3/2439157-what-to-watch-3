@@ -1,4 +1,5 @@
-import SmallFilmCard from '../../components/small-film-card/SmallFilmCard';
+import CatalogFilmCard from '../../components/catalog-film-card/catalog-film-card';
+import Logo from '../../components/logo/logo';
 
 type MainPageProps = {
   promoFilmName: string;
@@ -18,13 +19,7 @@ function MainPage({ promoFilmName, promoFilmGenre, promoFilmYear }: MainPageProp
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header film-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+          <Logo className='logo__link' isMain />
           <ul className="user-block">
             <li className="user-block__item">
               <div className="user-block__avatar">
@@ -132,26 +127,26 @@ function MainPage({ promoFilmName, promoFilmGenre, promoFilmYear }: MainPageProp
             </li>
           </ul>
           <div className="catalog__films-list">
-            <SmallFilmCard alt="Fantastic Beasts: The Crimes of Grindelwald" src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" />
-            <SmallFilmCard alt="Bohemian Rhapsody" src="img/bohemian-rhapsody.jpg" />
-            <SmallFilmCard alt="Macbeth" src="img/macbeth.jpg" />
-            <SmallFilmCard alt="Aviator" src="img/aviator.jpg" />
-            <SmallFilmCard alt="We need to talk about Kevin" src="img/we-need-to-talk-about-kevin.jpg" />
-            <SmallFilmCard alt="What We Do in the Shadows" src="img/what-we-do-in-the-shadows.jpg" />
-            <SmallFilmCard alt="Revenant" src="img/revenant.jpg" />
-            <SmallFilmCard alt="Johnny English" src="img/johnny-english.jpg" />
-            <SmallFilmCard alt="Shutter Island" src="img/shutter-island.jpg" />
-            <SmallFilmCard alt="Pulp Fiction" src="img/pulp-fiction.jpg" />
-            <SmallFilmCard alt="No Country for Old Men" src="img/no-country-for-old-men.jpg" />
-            <SmallFilmCard src="img/snatch.jpg" alt="Snatch" />
-            <SmallFilmCard src="img/moonrise-kingdom.jpg" alt="Moonrise Kingdom" />
-            <SmallFilmCard src="img/seven-years-in-tibet.jpg" alt="Seven Years in Tibet" />
-            <SmallFilmCard src="img/midnight-special.jpg" alt="Midnight Special" />
-            <SmallFilmCard src="img/war-of-the-worlds.jpg" alt="War of the Worlds" />
-            <SmallFilmCard src="img/dardjeeling-limited.jpg" alt="Dardjeeling Limited" />
-            <SmallFilmCard src="img/orlando.jpg" alt="Orlando" />
-            <SmallFilmCard src="img/mindhunter.jpg" alt="Mindhunter" />
-            <SmallFilmCard src="img/midnight-special.jpg" alt="Midnight Special" />
+            <CatalogFilmCard alt="Fantastic Beasts: The Crimes of Grindelwald" src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" />
+            <CatalogFilmCard alt="Bohemian Rhapsody" src="img/bohemian-rhapsody.jpg" />
+            <CatalogFilmCard alt="Macbeth" src="img/macbeth.jpg" />
+            <CatalogFilmCard alt="Aviator" src="img/aviator.jpg" />
+            <CatalogFilmCard alt="We need to talk about Kevin" src="img/we-need-to-talk-about-kevin.jpg" />
+            <CatalogFilmCard alt="What We Do in the Shadows" src="img/what-we-do-in-the-shadows.jpg" />
+            <CatalogFilmCard alt="Revenant" src="img/revenant.jpg" />
+            <CatalogFilmCard alt="Johnny English" src="img/johnny-english.jpg" />
+            <CatalogFilmCard alt="Shutter Island" src="img/shutter-island.jpg" />
+            <CatalogFilmCard alt="Pulp Fiction" src="img/pulp-fiction.jpg" />
+            <CatalogFilmCard alt="No Country for Old Men" src="img/no-country-for-old-men.jpg" />
+            <CatalogFilmCard src="img/snatch.jpg" alt="Snatch" />
+            <CatalogFilmCard src="img/moonrise-kingdom.jpg" alt="Moonrise Kingdom" />
+            <CatalogFilmCard src="img/seven-years-in-tibet.jpg" alt="Seven Years in Tibet" />
+            <CatalogFilmCard src="img/midnight-special.jpg" alt="Midnight Special" />
+            <CatalogFilmCard src="img/war-of-the-worlds.jpg" alt="War of the Worlds" />
+            <CatalogFilmCard src="img/dardjeeling-limited.jpg" alt="Dardjeeling Limited" />
+            <CatalogFilmCard src="img/orlando.jpg" alt="Orlando" />
+            <CatalogFilmCard src="img/mindhunter.jpg" alt="Mindhunter" />
+            <CatalogFilmCard src="img/midnight-special.jpg" alt="Midnight Special" />
           </div>
           <div className="catalog__more">
             <button className="catalog__button" type="button">
@@ -160,13 +155,7 @@ function MainPage({ promoFilmName, promoFilmGenre, promoFilmYear }: MainPageProp
           </div>
         </section>
         <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+          <Logo className='logo__link logo__link--light' isMain />
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
           </div>
