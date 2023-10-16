@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/app/app';
+import App from './components/app/App';
 
 // eslint-disable-next-line react-refresh/only-export-components
 const Setting = {
