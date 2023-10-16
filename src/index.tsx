@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 
-// eslint-disable-next-line react-refresh/only-export-components
 const Setting = {
   PromoFilmName: 'The Grand Budapest Hotel',
   PromoFilmGenre: 'Drama',
