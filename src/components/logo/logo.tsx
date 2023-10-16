@@ -1,15 +1,17 @@
+import { Link } from 'react-router-dom';
+
 type LogoProps = {
   className: string;
-  isMain?: boolean;
 }
-function Logo({ className, isMain }: LogoProps): JSX.Element {
+
+function Logo({ className }: LogoProps): JSX.Element {
   return (
     <div className="logo">
-      <a href={!isMain ? 'main.html' : undefined} className={className} >
+      <Link to="main.html" className={className}>
         <span className="logo__letter logo__letter--1">W</span>
         <span className="logo__letter logo__letter--2">T</span>
         <span className="logo__letter logo__letter--3">W</span>
-      </a>
+      </Link>
     </div>
   );
 }

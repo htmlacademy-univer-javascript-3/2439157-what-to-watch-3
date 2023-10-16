@@ -1,8 +1,11 @@
+import { Helmet } from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
+import { Link } from 'react-router-dom';
 
 function FilmPage(): JSX.Element {
   return (
     <>
+      <Helmet><title>Film</title></Helmet>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
@@ -51,9 +54,9 @@ function FilmPage(): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">
+                <Link to="add-review.html" className="btn film-card__button">
                   Add review
-                </a>
+                </Link>
               </div>
             </div>
           </div>

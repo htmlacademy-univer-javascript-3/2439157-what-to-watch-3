@@ -1,5 +1,7 @@
+import { Helmet } from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
 import Rating from '../../components/rating/rating';
+import { Link } from 'react-router-dom';
 
 function generateRatingList(min: number, max: number): number[] {
   return Array.from({ length: max - min + 1 }, (_, i) => max - i);
@@ -13,6 +15,7 @@ const ratingList = generateRatingList(MIN, MAX);
 function AddReviewPage(): JSX.Element {
   return (
     <section className="film-card film-card--full">
+      <Helmet><title>Add Review</title></Helmet>
       <div className="film-card__header">
         <div className="film-card__bg">
           <img
@@ -26,9 +29,9 @@ function AddReviewPage(): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">
+                <Link to="film-page.html" className="breadcrumbs__link">
                   The Grand Budapest Hotel
-                </a>
+                </Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>

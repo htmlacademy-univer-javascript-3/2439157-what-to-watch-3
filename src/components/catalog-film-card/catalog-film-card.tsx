@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 type CatalogFilmCardProps = {
   src: string;
   alt: string;
@@ -15,9 +17,9 @@ function CatalogFilmCard({ src: imageSrc, alt: filmName }: CatalogFilmCardProps)
         />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">
+        <Link className="small-film-card__link" to="film-page.html">
           {filmName}
-        </a>
+        </Link>
       </h3>
     </article>
   );
