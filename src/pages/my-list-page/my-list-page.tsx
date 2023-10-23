@@ -1,8 +1,10 @@
+import { Helmet } from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
 
 function MyListPage(): JSX.Element {
   return (
     <div className="user-page">
+      <Helmet><title>My List</title></Helmet>
       <header className="page-header user-page__head">
         <Logo className='logo__link' />
         <h1 className="page-title user-page__title">

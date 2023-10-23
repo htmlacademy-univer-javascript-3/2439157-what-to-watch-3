@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import CatalogFilmCard from '../../components/catalog-film-card/catalog-film-card';
 import Logo from '../../components/logo/logo';
 
@@ -10,6 +11,7 @@ type MainPageProps = {
 function MainPage({ promoFilmName, promoFilmGenre, promoFilmYear }: MainPageProps): JSX.Element {
   return (
     <>
+      <Helmet><title>Main</title></Helmet>
       <section className="film-card">
         <div className="film-card__bg">
           <img
@@ -19,7 +21,7 @@ function MainPage({ promoFilmName, promoFilmGenre, promoFilmYear }: MainPageProp
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header film-card__head">
-          <Logo className='logo__link' isMain />
+          <Logo className='logo__link' />
           <ul className="user-block">
             <li className="user-block__item">
               <div className="user-block__avatar">
@@ -155,7 +157,7 @@ function MainPage({ promoFilmName, promoFilmGenre, promoFilmYear }: MainPageProp
           </div>
         </section>
         <footer className="page-footer">
-          <Logo className='logo__link logo__link--light' isMain />
+          <Logo className='logo__link logo__link--light' />
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
           </div>
