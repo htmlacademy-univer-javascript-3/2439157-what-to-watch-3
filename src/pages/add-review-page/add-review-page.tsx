@@ -1,26 +1,23 @@
 import { Helmet } from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
-import Rating from '../../components/rating/rating';
 import { Link } from 'react-router-dom';
+import { Film } from '../../types/film';
+import { AppRoute } from '../../const';
+import FormSendingComment from '../../components/form-sending-comment/form-sending-comment';
 
-function generateRatingList(min: number, max: number): number[] {
-  return Array.from({ length: max - min + 1 }, (_, i) => max - i);
+type AddReviewPageProps = {
+  film: Film;
 }
 
-const MIN = 1;
-const MAX = 10;
-
-const ratingList = generateRatingList(MIN, MAX);
-
-function AddReviewPage(): JSX.Element {
+function AddReviewPage({film}: AddReviewPageProps): JSX.Element {
   return (
     <section className="film-card film-card--full">
       <Helmet><title>Add Review</title></Helmet>
       <div className="film-card__header">
         <div className="film-card__bg">
           <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
+            src={film.src}
+            alt={film.alt}
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
@@ -30,11 +27,13 @@ function AddReviewPage(): JSX.Element {
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
                 <Link to="film-page.html" className="breadcrumbs__link">
-                  The Grand Budapest Hotel
+                  {film.title}
                 </Link>
               </li>
               <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
+                <Link to={AppRoute.AddReview} className="breadcrumbs__link">
+                  Add review
+                </Link>
               </li>
             </ul>
           </nav>
@@ -56,36 +55,14 @@ function AddReviewPage(): JSX.Element {
         </header>
         <div className="film-card__poster film-card__poster--small">
           <img
-            src="img/the-grand-budapest-hotel-poster.jpg"
-            alt="The Grand Budapest Hotel poster"
+            src={film.srcPoster}
+            alt={film.altPoster}
             width={218}
             height={327}
           />
         </div>
       </div>
-      <div className="add-review">
-        <form action="#" className="add-review__form">
-          <div className="rating">
-            <div className="rating__stars">
-              {ratingList.map((value) => (<Rating key={value} num={value} />))}
-            </div>
-          </div>
-          <div className="add-review__text">
-            <textarea
-              className="add-review__textarea"
-              name="review-text"
-              id="review-text"
-              placeholder="Review text"
-              defaultValue={''}
-            />
-            <div className="add-review__submit">
-              <button className="add-review__btn" type="submit">
-                Post
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
+      <FormSendingComment />
     </section>
   );
 }
