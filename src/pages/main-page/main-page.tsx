@@ -1,14 +1,16 @@
 import { Helmet } from 'react-helmet-async';
-import CatalogFilmCard from '../../components/catalog-film-card/catalog-film-card';
 import Logo from '../../components/logo/logo';
+import CatalogFilmsList from '../../components/catalog-films-list/catalog-films-list';
+import { Films } from '../../types/film';
 
 type MainPageProps = {
   promoFilmName: string;
   promoFilmGenre: string;
   promoFilmYear: number;
+  films: Films;
 }
 
-function MainPage({ promoFilmName, promoFilmGenre, promoFilmYear }: MainPageProps): JSX.Element {
+function MainPage({ promoFilmName, promoFilmGenre, promoFilmYear, films}: MainPageProps): JSX.Element {
   return (
     <>
       <Helmet><title>Main</title></Helmet>
@@ -128,33 +130,7 @@ function MainPage({ promoFilmName, promoFilmGenre, promoFilmYear }: MainPageProp
               </a>
             </li>
           </ul>
-          <div className="catalog__films-list">
-            <CatalogFilmCard alt="Fantastic Beasts: The Crimes of Grindelwald" src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" />
-            <CatalogFilmCard alt="Bohemian Rhapsody" src="img/bohemian-rhapsody.jpg" />
-            <CatalogFilmCard alt="Macbeth" src="img/macbeth.jpg" />
-            <CatalogFilmCard alt="Aviator" src="img/aviator.jpg" />
-            <CatalogFilmCard alt="We need to talk about Kevin" src="img/we-need-to-talk-about-kevin.jpg" />
-            <CatalogFilmCard alt="What We Do in the Shadows" src="img/what-we-do-in-the-shadows.jpg" />
-            <CatalogFilmCard alt="Revenant" src="img/revenant.jpg" />
-            <CatalogFilmCard alt="Johnny English" src="img/johnny-english.jpg" />
-            <CatalogFilmCard alt="Shutter Island" src="img/shutter-island.jpg" />
-            <CatalogFilmCard alt="Pulp Fiction" src="img/pulp-fiction.jpg" />
-            <CatalogFilmCard alt="No Country for Old Men" src="img/no-country-for-old-men.jpg" />
-            <CatalogFilmCard src="img/snatch.jpg" alt="Snatch" />
-            <CatalogFilmCard src="img/moonrise-kingdom.jpg" alt="Moonrise Kingdom" />
-            <CatalogFilmCard src="img/seven-years-in-tibet.jpg" alt="Seven Years in Tibet" />
-            <CatalogFilmCard src="img/midnight-special.jpg" alt="Midnight Special" />
-            <CatalogFilmCard src="img/war-of-the-worlds.jpg" alt="War of the Worlds" />
-            <CatalogFilmCard src="img/dardjeeling-limited.jpg" alt="Dardjeeling Limited" />
-            <CatalogFilmCard src="img/orlando.jpg" alt="Orlando" />
-            <CatalogFilmCard src="img/mindhunter.jpg" alt="Mindhunter" />
-            <CatalogFilmCard src="img/midnight-special.jpg" alt="Midnight Special" />
-          </div>
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">
-              Show more
-            </button>
-          </div>
+          <CatalogFilmsList films={films} />
         </section>
         <footer className="page-footer">
           <Logo className='logo__link logo__link--light' />

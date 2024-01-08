@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app';
+import { films } from './mocks/films';
 
-const Setting = {
+export const Setting = {
   PromoFilmName: 'The Grand Budapest Hotel',
   PromoFilmGenre: 'Drama',
   PromoFilmYear: 2014
@@ -18,6 +19,7 @@ root.render(
       promoFilmName={Setting.PromoFilmName}
       promoFilmGenre={Setting.PromoFilmGenre}
       promoFilmYear={Setting.PromoFilmYear}
+      films = {films}
     />
   </React.StrictMode>
 );
