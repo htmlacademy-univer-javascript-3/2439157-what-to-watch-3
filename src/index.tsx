@@ -1,25 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './app';
-import { films } from './mocks/films';
+import App from './components/app/app.tsx';
+import {Provider} from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import {store} from './store';
+import {checkAuthAction, fetchFilmsAction, fetchPromoFilmAction} from './store/api-actions.ts';
+import {HistoryRouter} from './components/history-router/history-router.tsx';
+import browserHistory from './browser-history.ts';
 
-export const Setting = {
-  PromoFilmName: 'The Grand Budapest Hotel',
-  PromoFilmGenre: 'Drama',
-  PromoFilmYear: 2014
-} as const;
-
+store.dispatch(fetchFilmsAction());
+store.dispatch(fetchPromoFilmAction());
+store.dispatch(checkAuthAction());
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 root.render(
   <React.StrictMode>
-    <App
-      promoFilmName={Setting.PromoFilmName}
-      promoFilmGenre={Setting.PromoFilmGenre}
-      promoFilmYear={Setting.PromoFilmYear}
-      films = {films}
-    />
+    <Provider store={store}>
+      <HistoryRouter history={browserHistory}>
+        <ToastContainer />
+        <App />
+      </HistoryRouter>
+    </Provider>
   </React.StrictMode>
 );
