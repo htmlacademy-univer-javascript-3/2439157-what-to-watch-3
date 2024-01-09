@@ -1,14 +1,13 @@
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import {Link} from 'react-router-dom';
 
 type LogoProps = {
   className: string;
 }
 
-function Logo({ className }: LogoProps): JSX.Element {
+function Logo(props: LogoProps) {
   return (
-    <div className="logo">
-      <Link to={AppRoute.Main} className={className}>
+    <div className="logo" data-testid="logo">
+      <Link to={'/'} className={props.className}>
         <span className="logo__letter logo__letter--1">W</span>
         <span className="logo__letter logo__letter--2">T</span>
         <span className="logo__letter logo__letter--3">W</span>

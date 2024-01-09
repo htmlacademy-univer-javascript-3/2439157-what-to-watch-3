@@ -1,142 +1,108 @@
-import { Helmet } from 'react-helmet-async';
-import Logo from '../../components/logo/logo';
-import CatalogFilmsList from '../../components/catalog-films-list/catalog-films-list';
-import { Films } from '../../types/film';
+import {FilmCardInCatalog} from '../../components/film-card/film-card-in-catalog.tsx';
+import Logo from '../../components/logo/logo.tsx';
+import Copyright from '../../components/copyright/copyright.tsx';
+import {useEffect, useState} from 'react';
+import {CatalogGenres} from '../../components/catalog-genres/catalog-genres.tsx';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
+import {ShowOther} from '../../components/show-more/show-other.tsx';
+import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
+import UserBlock from '../../components/user-block/user-block.tsx';
+import {UnauthUser} from '../../components/unauth-user/unauth-user.tsx';
+import {getAuthorizationStatus} from '../../store/user-process/user-selectors.ts';
+import {getFavoriteFilms, getFilms, getPromoFilm, getShowFilms} from '../../store/film-process/film-selectors.ts';
+import {getGenre} from '../../store/genre-process/genre-selectors.ts';
+import {hideMovies, showMoreFilms} from '../../store/film-process/film-process.ts';
+import cn from 'classnames';
+import { FilmCardButtonAdd } from '../../components/film-card/film-card-button/film-card-button-add.tsx';
+import {FilmCardButtonPlay} from '../../components/film-card/film-card-button/film-card-button-play.tsx';
+import {useFunctionalityButtonList} from '../../hooks/use-functionality-button-list.ts';
 
-type MainPageProps = {
-  promoFilmName: string;
-  promoFilmGenre: string;
-  promoFilmYear: number;
-  films: Films;
-}
-
-function MainPage({ promoFilmName, promoFilmGenre, promoFilmYear, films}: MainPageProps): JSX.Element {
+function MainPage() {
+  const promoFilm = useAppSelector(getPromoFilm);
+  const activeGenre = useAppSelector(getGenre);
+  const showFilms = useAppSelector(getShowFilms);
+  const listFilms = useAppSelector(getFilms);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const [isInList, setInList] = useState(false);
+  const favoriteFilms = useAppSelector(getFavoriteFilms);
+  const dispatch = useAppDispatch();
+  useEffect(() => () => {
+    dispatch(hideMovies());
+  }, [dispatch]);
   return (
     <>
-      <Helmet><title>Main</title></Helmet>
-      <section className="film-card">
+      <section className="film-card" data-testid="main-page">
         <div className="film-card__bg">
-          <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
-          />
+          <img src="/public/img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
         </div>
+
         <h1 className="visually-hidden">WTW</h1>
+
         <header className="page-header film-card__head">
-          <Logo className='logo__link' />
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img
-                  src="img/avatar.jpg"
-                  alt="User avatar"
-                  width={63}
-                  height={63}
-                />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
-            </li>
-          </ul>
+          <Logo className={'logo__link'}/>
+          {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock/> :
+            <UnauthUser/>}
         </header>
+
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img
-                src="img/the-grand-budapest-hotel-poster.jpg"
-                alt="The Grand Budapest Hotel poster"
-                width={218}
-                height={327}
-              />
+              <img src={promoFilm?.posterImage} alt={promoFilm?.name} width="218" height="327"/>
             </div>
+
             <div className="film-card__desc">
-              <h2 className="film-card__title">{promoFilmName}</h2>
+              <h2 className="film-card__title">{promoFilm?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{promoFilmGenre}</span>
-                <span className="film-card__year">{promoFilmYear}</span>
+                <span className="film-card__genre">{promoFilm?.genre}</span>
+                <span className="film-card__year">{promoFilm?.released}</span>
               </p>
+
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width={19} height={19}>
-                    <use xlinkHref="#play-s" />
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width={19} height={20}>
-                    <use xlinkHref="#add" />
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+                <FilmCardButtonPlay height={'19'} width={'19'} xlinkHref={'#play-s'} nameButton={'Play'}
+                  className={'btn btn--play film-card__button'}
+                  path={`/player/${promoFilm?.id ?? ''}`}
+                />
+
+                <FilmCardButtonAdd height={'20'} width={'19'} xlinkHref={cn({'#add': !isInList},
+                  {'#in-list': isInList})} nameButton={'My list'}
+                onClick={useFunctionalityButtonList(authorizationStatus, setInList, isInList, promoFilm?.id ?? '')}
+                className={'btn btn--list film-card__button'}
+                >
+                  <span className="film-card__count">{favoriteFilms.length}</span>
+                </FilmCardButtonAdd>
               </div>
             </div>
           </div>
         </div>
       </section>
+
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">
-                All genres
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Comedies
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Crime
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Documentary
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Dramas
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Horror
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Kids &amp; Family
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Romance
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Sci-Fi
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-                Thrillers
-              </a>
-            </li>
-          </ul>
-          <CatalogFilmsList films={films} />
-        </section>
-        <footer className="page-footer">
-          <Logo className='logo__link logo__link--light' />
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
+          <CatalogGenres/>
+          <div className="catalog__films-list">
+            {listFilms.filter((movie) => {
+              if (activeGenre === 'All genres') {
+                return true;
+              }
+              return movie.genre === activeGenre;
+            }).slice(0, showFilms).map((movie) => (
+              <FilmCardInCatalog nameFilm={movie.name} imgPath={movie.previewImage} id={movie.id}
+                videoPath={movie.previewVideoLink}
+                key={movie.id}
+              />
+            ))}
           </div>
+          {showFilms >= listFilms.length ? null :
+            <ShowOther onClickHandler={() => {
+              dispatch(showMoreFilms());
+            }}
+            />}
+        </section>
+
+        <footer className="page-footer">
+          <Logo className={'logo__link logo__link--light'}/>
+          <Copyright/>
         </footer>
       </div>
     </>

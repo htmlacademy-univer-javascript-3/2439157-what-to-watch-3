@@ -1,23 +1,21 @@
-type RatingProps = {
-  num: number;
+import {ChangeEventHandler} from 'react';
+
+type NumberRatingProps = {
+
+  numberRating: string;
+  setRating: ChangeEventHandler<HTMLInputElement>;
 }
 
-function Rating({ num }: RatingProps): JSX.Element {
+export function Rating({numberRating, setRating}: NumberRatingProps) {
   return (
     <>
-      <input
-        className="rating__input"
-        id={`star-${num}`}
-        type="radio"
+      <input className="rating__input" id={`star-${numberRating}`} type="radio"
         name="rating"
-        defaultValue={num}
-        defaultChecked={num === 8}
+        value={numberRating}
+        onChange={setRating}
+        data-testid={`star-${numberRating}`}
       />
-      <label className="rating__label" htmlFor={`star-${num}`}>
-        Rating {num}
-      </label>
+      <label className="rating__label" htmlFor={`star-${numberRating}`}>Rating {numberRating}</label>`
     </>
   );
 }
-
-export default Rating;
