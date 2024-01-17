@@ -32,19 +32,21 @@ export function FilmCardInCatalog({nameFilm, id, imgPath, videoPath}: FilmCardPr
   const [, setActiveCardId] = useState('');
   return (
     <article className="small-film-card catalog__films-card" onMouseEnter={() => setActiveCardId(id)}>
-      <div className="small-film-card__image" onMouseLeave={() => setIsPlaying(!isPlaying)}
-        onMouseEnter={() => setIsPlaying(!isPlaying)}
-      >
-        {isPlaying ?
-          <video src={videoPath} className="player__video" poster={imgPath} ref={videoRef} muted
-            width="280" height="175"
-          >
-          </video> :
-          <img src={imgPath} alt={nameFilm} width="280" height="175"/>}
-      </div>
-      <h3 className="small-film-card__title">
-        <Link to={`/films/${id}`} className="small-film-card__link">{nameFilm}</Link>
-      </h3>
+      <Link to={`/films/${id}`} className="small-film-card__link">
+        <div className="small-film-card__image" onMouseLeave={() => setIsPlaying(!isPlaying)}
+          onMouseEnter={() => setIsPlaying(!isPlaying)}
+        >
+          {isPlaying ?
+            <video src={videoPath} className="player__video" poster={imgPath} ref={videoRef} muted
+              width="280" height="175"
+            >
+            </video> :
+            <img src={imgPath} alt={nameFilm} width="280" height="175"/>}
+        </div>
+        <h3 className="small-film-card__title">
+          {nameFilm}
+        </h3>
+      </Link>
     </article>
   );
 }
